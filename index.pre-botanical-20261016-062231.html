@@ -1,0 +1,1097 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17141C">
+  <meta name="description" content="The portfolio of Vera Lynn DeGraw: independent software projects, creative coding, AI and human collaboration, and responsible technology.">
+
+  <title>Vera Lynn DeGraw | Independent Builder</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+
+      /* The garden at twilight */
+      --bg: #17141C;
+      --surface: #211A2B;
+      --surface-light: #2C2139;
+
+      /* Readable, gentle text */
+      --text: #F8F0FF;
+      --muted: #C5BDCE;
+
+      /* Our color family */
+      --accent: #F42D72;
+      --accent-light: #FF9BBC;
+      --mustard: #D9A928;
+      --turquoise: #239F91;
+      --violet: #592B91;
+
+      --line: rgba(248, 240, 255, 0.13);
+      --radius: 20px;
+      --width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(
+          ellipse at 85% 5%,
+          rgba(89, 43, 145, 0.22),
+          transparent 32rem
+        ),
+        radial-gradient(
+          ellipse at 5% 45%,
+          rgba(35, 159, 145, 0.08),
+          transparent 30rem
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent-light);
+      outline-offset: 5px;
+    }
+
+    a:hover {
+      color: var(--accent-light);
+    }
+
+    .container {
+      width: min(var(--width), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      z-index: 100;
+      padding: 10px 16px;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 8px;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* Navigation */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(23, 20, 28, 0.88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        var(--violet)
+      );
+      color: white;
+      box-shadow: 0 0 24px rgba(244, 45, 114, 0.18);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Shared elements */
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--turquoise);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    h3 {
+      font-size: 1.3rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    .gold {
+      color: var(--mustard);
+    }
+
+    .teal {
+      color: var(--turquoise);
+    }
+
+    .violet {
+      color: #B99AEF;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading > p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 19px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.94rem;
+      font-weight: 750;
+      text-decoration: none;
+      transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #210C18;
+      box-shadow: 0 8px 28px rgba(244, 45, 114, 0.15);
+    }
+
+    .button-primary:hover {
+      background: var(--accent-light);
+      color: #210C18;
+    }
+
+    .button-secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--turquoise);
+      background: rgba(35, 159, 145, 0.09);
+      color: var(--text);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 90px 0 105px;
+      isolation: isolate;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      max-width: 790px;
+      margin-bottom: 24px;
+      font-size: clamp(3.1rem, 7.5vw, 6.1rem);
+      font-weight: 850;
+      line-height: 0.99;
+      letter-spacing: -0.075em;
+    }
+
+    .hero-description {
+      max-width: 600px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 9px;
+      border-radius: 50%;
+      background: var(--turquoise);
+      box-shadow: 0 0 14px rgba(35, 159, 145, 0.55);
+    }
+
+    /* Decorative light */
+
+    .orb-wrap {
+      position: relative;
+      min-height: 340px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb {
+      position: relative;
+      width: clamp(180px, 24vw, 285px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle at 32% 25%,
+          rgba(255, 255, 255, 0.85),
+          transparent 5%
+        ),
+        radial-gradient(
+          circle at 35% 30%,
+          var(--accent-light),
+          var(--accent) 26%,
+          var(--violet) 61%,
+          var(--bg) 83%
+        );
+      box-shadow:
+        0 0 55px rgba(244, 45, 114, 0.19),
+        0 0 120px rgba(89, 43, 145, 0.22);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .orb::before,
+    .orb::after {
+      content: "";
+      position: absolute;
+      inset: -19px;
+      border: 1px solid rgba(217, 169, 40, 0.42);
+      border-radius: 50%;
+      transform: rotate(-28deg) scaleY(0.34);
+    }
+
+    .orb::after {
+      inset: -35px;
+      border-color: rgba(35, 159, 145, 0.5);
+      transform: rotate(38deg) scaleY(0.43);
+    }
+
+    .orb-caption {
+      position: absolute;
+      right: 0;
+      bottom: 12px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+      gap: 55px;
+      align-items: start;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+    }
+
+    .principles {
+      display: grid;
+      gap: 14px;
+    }
+
+    .principle {
+      padding: 21px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.025),
+          transparent 75%
+        ),
+        var(--surface);
+    }
+
+    .principle:nth-child(1) {
+      border-left: 3px solid var(--accent);
+    }
+
+    .principle:nth-child(2) {
+      border-left: 3px solid var(--turquoise);
+    }
+
+    .principle:nth-child(3) {
+      border-left: 3px solid var(--mustard);
+    }
+
+    .principle h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .principle p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* Projects */
+
+    .projects {
+      background: rgba(255, 255, 255, 0.015);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(
+          ellipse at 100% 0%,
+          rgba(89, 43, 145, 0.12),
+          transparent 60%
+        ),
+        var(--surface);
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(244, 45, 114, 0.45);
+    }
+
+    .project-symbol {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 25px;
+      border: 1px solid rgba(244, 45, 114, 0.28);
+      border-radius: 15px;
+      background: rgba(244, 45, 114, 0.07);
+      color: var(--accent-light);
+      font-size: 1.3rem;
+    }
+
+    .project-card:nth-child(2) .project-symbol {
+      border-color: rgba(35, 159, 145, 0.35);
+      background: rgba(35, 159, 145, 0.08);
+      color: #77DCCF;
+    }
+
+    .project-card h3 {
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: auto;
+      padding-top: 14px;
+    }
+
+    .text-link {
+      font-size: 0.92rem;
+      font-weight: 750;
+      text-decoration-color: rgba(244, 45, 114, 0.55);
+      text-underline-offset: 5px;
+    }
+
+    /* Interests and toolkit */
+
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .interest-card {
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .interest-card:nth-child(1) .interest-icon {
+      color: var(--accent);
+    }
+
+    .interest-card:nth-child(2) .interest-icon {
+      color: var(--turquoise);
+    }
+
+    .interest-card:nth-child(3) .interest-icon {
+      color: var(--mustard);
+    }
+
+    .interest-icon {
+      display: block;
+      margin-bottom: 17px;
+      font-size: 1.7rem;
+    }
+
+    .interest-card h3 {
+      font-size: 1.05rem;
+    }
+
+    .interest-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .toolkit {
+      margin-top: 65px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    .toolkit h3 {
+      margin-bottom: 18px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--muted);
+      font-size: 0.87rem;
+    }
+
+    .tag-list li:nth-child(3n + 1) {
+      border-color: rgba(244, 45, 114, 0.27);
+    }
+
+    .tag-list li:nth-child(3n + 2) {
+      border-color: rgba(35, 159, 145, 0.3);
+    }
+
+    .tag-list li:nth-child(3n) {
+      border-color: rgba(217, 169, 40, 0.3);
+    }
+
+    /* Contact */
+
+    .contact-section {
+      padding-top: 40px;
+    }
+
+    .contact-panel {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(30px, 6vw, 65px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        radial-gradient(
+          ellipse at 100% 0%,
+          rgba(89, 43, 145, 0.28),
+          transparent 55%
+        ),
+        radial-gradient(
+          ellipse at 0% 100%,
+          rgba(35, 159, 145, 0.13),
+          transparent 50%
+        ),
+        var(--surface);
+    }
+
+    .contact-panel h2 {
+      max-width: 650px;
+    }
+
+    .contact-panel p {
+      max-width: 610px;
+      color: var(--muted);
+    }
+
+    .contact-panel .button {
+      margin-top: 10px;
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    /* Responsive layouts */
+
+    @media (max-width: 800px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 75px 0 55px;
+      }
+
+      .orb-wrap {
+        min-height: 280px;
+      }
+
+      .orb {
+        width: 205px;
+      }
+
+      .orb-caption {
+        right: 10%;
+        bottom: 0;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .interest-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interest-card {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        column-gap: 12px;
+      }
+
+      .interest-icon {
+        grid-row: span 2;
+      }
+
+      .interest-card h3 {
+        margin-bottom: 8px;
+      }
+
+      .interest-card p {
+        grid-column: 2;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--width), calc(100% - 30px));
+      }
+
+      .nav {
+        min-height: 70px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        padding: 12px 0;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-links a {
+        font-size: 0.82rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 14vw, 4.3rem);
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        min-height: 270px;
+        padding: 23px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Vera Lynn DeGraw, home">
+        <span class="brand-mark" aria-hidden="true">V.</span>
+        <span>Vera Lynn DeGraw</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#interests">Interests</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Independent builder · Lifelong learner</p>
+
+          <h1>
+            Ideas deserve<br>
+            a chance to <span class="highlight">grow.</span>
+          </h1>
+
+          <p class="hero-description">
+            I'm Vera, an independent builder exploring software,
+            creative coding, and thoughtful ways for people and
+            technology to work together. I believe good ideas deserve
+            curiosity, care, and room to become something real.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">
+              Explore my work <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="button button-secondary"
+              href="https://github.com/VeraLynnDeGraw"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="hero-note">
+            <span class="status-dot" aria-hidden="true"></span>
+            Building, learning, and growing one project at a time.
+          </div>
+        </div>
+
+        <div class="orb-wrap" aria-hidden="true">
+          <div class="orb"></div>
+          <span class="orb-caption">Curiosity in motion</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">A little about me</p>
+
+          <h2>
+            Curious by nature.<br>
+            <span class="teal">A builder by choice.</span>
+          </h2>
+
+          <p>
+            I enjoy exploring how things work, connecting ideas,
+            and turning curiosity into practical projects. My interests
+            live at the intersection of software, creativity,
+            systems thinking, and human understanding.
+          </p>
+
+          <p>
+            I'm especially interested in technology that helps people
+            retain context, understand complexity, and remain in control
+            of the systems they use. To me, building well means caring
+            about not just what a system can do, but why it exists and
+            whom it serves.
+          </p>
+
+          <p>
+            I'm learning by making things, documenting what I discover,
+            and sharing work openly so others can explore, adapt, and
+            build on it.
+          </p>
+        </div>
+
+        <div class="principles" aria-label="Guiding principles">
+          <article class="principle">
+            <h3><span class="highlight">01.</span> Curiosity before certainty</h3>
+            <p>
+              Ask questions, investigate carefully, and leave room
+              for new evidence to change the picture.
+            </p>
+          </article>
+
+          <article class="principle">
+            <h3><span class="teal">02.</span> People before technology</h3>
+            <p>
+              Tools should support human understanding and agency,
+              not quietly replace them.
+            </p>
+          </article>
+
+          <article class="principle">
+            <h3><span class="gold">03.</span> Build with care</h3>
+            <p>
+              Favor clear foundations, honest documentation,
+              responsible choices, and steady improvement.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Things taking shape</p>
+          <h2>Projects with room to <span class="highlight">grow.</span></h2>
+          <p>
+            Small beginnings, practical experiments, and ideas that
+            become more useful when they're shared.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-symbol" aria-hidden="true">✳</div>
+
+            <p class="eyebrow">Web design · Open source</p>
+            <h3>Website Template</h3>
+
+            <p>
+              A simple, customizable website foundation designed to
+              make starting a new web project a little less intimidating.
+              A clean place to begin, learn, and make something your own.
+            </p>
+
+            <div class="project-links">
+              <a
+                class="text-link"
+                href="https://wesite-template.web.app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View live site ↗
+              </a>
+
+              <a
+                class="text-link"
+                href="https://github.com/VeraLynnDeGraw/Website-Template"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Explore the code ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-symbol" aria-hidden="true">✺</div>
+
+            <p class="eyebrow">Personal project · In progress</p>
+            <h3>Website Portfolio</h3>
+
+            <p>
+              My own evolving corner of the internet: a place to
+              share independent projects, creative experiments,
+              lessons learned, and the ideas behind the work.
+            </p>
+
+            <div class="project-links">
+              <a
+                class="text-link"
+                href="https://github.com/VeraLynnDeGraw/Website-Portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Explore the code ↗
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interests">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">What keeps me exploring</p>
+          <h2>A few of my favorite <span class="violet">directions.</span></h2>
+          <p>
+            My interests overlap, cross-pollinate, and occasionally
+            grow into projects I didn't expect to start.
+          </p>
+        </div>
+
+        <div class="interest-grid">
+          <article class="interest-card">
+            <span class="interest-icon" aria-hidden="true">⌘</span>
+            <h3>Creative coding</h3>
+            <p>
+              Making ideas tangible through code, interfaces,
+              experiments, and small tools that solve real problems.
+            </p>
+          </article>
+
+          <article class="interest-card">
+            <span class="interest-icon" aria-hidden="true">◈</span>
+            <h3>AI and human collaboration</h3>
+            <p>
+              Exploring how intelligent tools can help people think,
+              create, and understand without taking away their agency.
+            </p>
+          </article>
+
+          <article class="interest-card">
+            <span class="interest-icon" aria-hidden="true">❋</span>
+            <h3>Responsible technology</h3>
+            <p>
+              Building with an eye toward transparency, maintainability,
+              open knowledge, and thoughtful stewardship.
+            </p>
+          </article>
+        </div>
+
+        <div class="toolkit">
+          <h3>My growing toolkit</h3>
+
+          <p class="muted">
+            Tools and practices I'm exploring as I learn by building.
+          </p>
+
+          <ul class="tag-list" aria-label="Areas of interest and tools">
+            <li>HTML &amp; CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Git &amp; GitHub</li>
+            <li>Command line</li>
+            <li>Open source</li>
+            <li>Creative coding</li>
+            <li>AI-assisted development</li>
+            <li>Documentation</li>
+            <li>Systems thinking</li>
+            <li>Responsive design</li>
+            <li>Continuous learning</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <p class="eyebrow">Keep in touch</p>
+
+          <h2>
+            Good ideas grow when they're <span class="highlight">shared.</span>
+          </h2>
+
+          <p>
+            I'm building, learning, and exploring one project at a time.
+            Visit my GitHub to follow my work, inspect the code, and see
+            what I'm working on next.
+          </p>
+
+          <a
+            class="button button-primary"
+            href="https://github.com/VeraLynnDeGraw"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Find me on GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Vera Lynn DeGraw</span>
+      <span>Made with curiosity and care.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
