@@ -1,303 +1,720 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0c10">
-  <meta name="description" content="A simple, customizable static website template.">
-
-  <title>Website Template</title>
+  <meta name="theme-color" content="#171714">
+  <meta name="description" content="The portfolio of Vera Lynn DeGraw: independent software projects, creative coding, AI and human collaboration, and responsible technology.">
+  <title>Vera Lynn DeGraw | Independent Builder</title>
 
   <style>
     :root {
       color-scheme: dark;
-      --background: #0b0c10;
-      --surface: #14161d;
-      --text: #f1eee8;
-      --muted: #a3a5b0;
-      --accent: #e7b777;
-      --border: #292b35;
+      --bg: #171714;
+      --surface: #20201b;
+      --surface-light: #282820;
+      --text: #f4f0e6;
+      --muted: #b8b3a5;
+      --accent: #e8ad62;
+      --accent-light: #f5d6a4;
+      --line: rgba(244, 240, 230, 0.13);
+      --radius: 20px;
+      --width: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
       margin: 0;
-      min-height: 100vh;
       background:
-        radial-gradient(
-          ellipse at 50% 0%,
-          #392a233d,
-          transparent 55%
-        ),
-        var(--background);
+        radial-gradient(ellipse at 85% 5%, rgba(232,173,98,.09), transparent 32rem),
+        var(--bg);
       color: var(--text);
-      font-family: system-ui, sans-serif;
-      line-height: 1.6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-light);
+      outline-offset: 5px;
     }
 
     .container {
-      width: min(100% - 40px, 960px);
+      width: min(var(--width), calc(100% - 40px));
       margin-inline: auto;
     }
 
-    header {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -100px;
+      z-index: 20;
+      padding: 10px 14px;
+      background: var(--accent);
+      color: #171714;
+      border-radius: 8px;
     }
 
-    nav {
+    .skip-link:focus { top: 12px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(23, 23, 20, .88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 24px;
     }
 
     .brand {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-    }
-
-    .nav-link {
-      color: var(--muted);
+      font-weight: 750;
+      letter-spacing: -.04em;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 1.05rem;
     }
 
-    .nav-link:hover {
-      color: var(--accent);
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 22px;
     }
 
-    main {
-      padding-block: 100px 80px;
-      text-align: center;
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover { color: var(--accent-light); }
+
+    .hero {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 56px;
+      padding-block: 100px 110px;
     }
 
     .eyebrow {
+      margin: 0 0 18px;
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.75rem;
-      font-weight: 600;
+      letter-spacing: .16em;
+      font-size: .76rem;
+      font-weight: 750;
     }
+
+    h1, h2, h3, p { margin-top: 0; }
 
     h1 {
-      margin: 20px 0;
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      line-height: 1.08;
-      letter-spacing: -0.055em;
+      max-width: 760px;
+      margin-bottom: 24px;
+      font-size: clamp(3.3rem, 7.5vw, 6.6rem);
+      line-height: .99;
+      letter-spacing: -.075em;
+      font-weight: 760;
     }
 
-    h1 span {
+    h1 .highlight {
       color: var(--accent);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -.065em;
     }
 
-    .intro {
-      max-width: 560px;
-      margin: 0 auto;
+    .hero-copy {
+      max-width: 610px;
       color: var(--muted);
       font-size: 1.1rem;
     }
 
-    .actions {
+    .hero-actions {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
+      margin-top: 30px;
     }
 
-    button,
     .button {
-      padding: 12px 20px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-      color: var(--text);
-      font: inherit;
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 19px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
       text-decoration: none;
-      cursor: pointer;
-      transition: border-color 180ms, transform 180ms;
+      font-weight: 700;
+      font-size: .92rem;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
     }
 
-    button:hover,
-    .button:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
+    .button:hover { transform: translateY(-2px); }
 
-    .primary {
+    .button-primary {
       background: var(--accent);
-      color: #17120c;
+      color: #21190f;
       border-color: var(--accent);
-      font-weight: 650;
     }
 
-    .experiment {
-      max-width: 560px;
-      margin: 70px auto 0;
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: #14161dbd;
-      box-shadow: 0 0 60px #e7b7770a;
+    .button-primary:hover { background: var(--accent-light); }
+
+    .button-secondary:hover {
+      border-color: var(--accent);
+      background: rgba(232,173,98,.07);
     }
 
-    .orb {
-      width: 64px;
-      height: 64px;
-      margin: 12px auto 20px;
+    .art {
+      position: relative;
+      min-height: 370px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .art::before, .art::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(232,173,98,.24);
       border-radius: 50%;
-      background: #272630;
-      transition: all 500ms ease;
+      width: min(100%, 350px);
+      aspect-ratio: 1;
+      transform: rotate(-25deg) scaleY(.65);
     }
 
-    .orb.lit {
-      background: var(--accent);
-      box-shadow:
-        0 0 20px #e7b77780,
-        0 0 65px #e7b77740;
+    .art::after {
+      transform: rotate(55deg) scaleY(.65);
+      border-color: rgba(232,173,98,.15);
     }
 
-    #message {
-      min-height: 52px;
+    .sun {
+      width: min(62%, 225px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f7dca9, #e8ad62 45%, #8f5732);
+      box-shadow: 0 0 70px rgba(232,173,98,.19), 0 0 150px rgba(232,173,98,.08);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .art-caption {
+      position: absolute;
+      bottom: 3px;
+      color: var(--muted);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-align: center;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .section {
+      padding-block: 100px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2, .about-copy h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -.06em;
+    }
+
+    .section-heading > p:last-child,
+    .muted { color: var(--muted); }
+
+    .project-grid, .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      min-width: 0;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,.025), transparent 70%), var(--surface);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(232,173,98,.45);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .card-symbol {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(232,173,98,.28);
+      border-radius: 13px;
+      color: var(--accent);
+      font-size: 1.15rem;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: .75rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+      letter-spacing: -.03em;
+    }
+
+    .card p { color: var(--muted); }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .text-link {
+      color: var(--accent-light);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .text-link:hover { text-decoration: underline; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .about-copy p { color: var(--muted); }
+
+    .principles {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .principles li {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .principles strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .principles span {
+      display: block;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .interest-card { min-height: 220px; }
+
+    .interest-card .card-symbol { margin-bottom: 24px; }
+
+    .toolkit {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .9rem;
+      background: rgba(255,255,255,.02);
+    }
+
+    .contact-panel {
+      padding: clamp(28px, 6vw, 62px);
+      border: 1px solid rgba(232,173,98,.27);
+      border-radius: 26px;
+      background: radial-gradient(ellipse at 100% 0%, rgba(232,173,98,.1), transparent 55%), var(--surface);
+    }
+
+    .contact-panel h2 {
+      max-width: 650px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -.06em;
+      margin-bottom: 18px;
+    }
+
+    .contact-panel p {
+      max-width: 600px;
       color: var(--muted);
     }
 
     footer {
-      padding: 24px 0;
-      border-top: 1px solid var(--border);
+      padding-block: 28px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      text-align: center;
-      font-size: 0.85rem;
+      font-size: .85rem;
     }
 
-    @media (max-width: 600px) {
-      main {
-        padding-top: 70px;
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding-block: 15px;
+        gap: 10px;
       }
 
-      .experiment {
-        padding: 22px 16px;
+      .nav-links {
+        justify-content: flex-start;
+        gap: 12px 18px;
       }
+
+      .hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-block: 80px 65px;
+      }
+
+      .art { min-height: 300px; }
+      .section { padding-block: 72px; }
+      .about-grid { grid-template-columns: 1fr; gap: 35px; }
+    }
+
+    @media (max-width: 540px) {
+      .container { width: min(100% - 28px, var(--width)); }
+      .project-grid, .interest-grid { grid-template-columns: 1fr; }
+      .card { padding: 23px; }
+      .hero-copy { font-size: 1rem; }
+      .art { min-height: 260px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition-duration: 0.01ms !important;
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <nav class="container">
-      <a class="brand" href="#home"
-         style="text-decoration:none">
-        YOUR BRAND
-      </a>
-      <a class="nav-link" href="#experiment">
-        Explore the experiment ↓
-      </a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">Vera Lynn <span>DeGraw.</span></a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#interests">Interests</a>
+        <a href="#toolkit">Toolkit</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
   </header>
 
-  <main class="container" id="home">
-    <p class="eyebrow">A little space to create</p>
+  <main id="main">
+    <section class="hero container" id="home">
+      <div>
+        <p class="eyebrow">Independent builder · Lifelong learner</p>
+        <h1>Ideas deserve<br>a chance <span class="highlight">to grow.</span></h1>
+        <p class="hero-copy">
+          I'm Vera Lynn DeGraw. I build practical projects, explore
+          the possibilities of AI and human collaboration, and learn
+          by turning curious ideas into things people can use.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore my work ↗</a>
+          <a class="button button-secondary" href="#about">A little about me</a>
+        </div>
+      </div>
 
-    <h1>
-      Start with an idea.<br>
-      <span>Make it real.</span>
-    </h1>
-
-    <p class="intro">
-      A simple, reusable website template.
-      Change the words, explore the design,
-      and make this little corner of the internet yours.
-    </p>
-
-    <div class="actions">
-      <a class="button primary" href="#experiment">
-        Explore the light
-      </a>
-      <a class="button" href="#about">
-        About this template
-      </a>
-    </div>
-
-    <section class="experiment" id="experiment">
-      <p class="eyebrow">Interactive experiment</p>
-
-      <div class="orb" id="orb" aria-hidden="true"></div>
-
-      <h2>A little light goes a long way.</h2>
-
-      <p id="message" aria-live="polite">
-        Nothing to solve. Just press the button.
-      </p>
-
-      <button class="primary" id="lightButton"
-              type="button" aria-pressed="false">
-        Turn on the light
-      </button>
+      <div class="art" aria-hidden="true">
+        <div class="sun"></div>
+        <p class="art-caption">STAY CURIOUS. BUILD WITH CARE.</p>
+      </div>
     </section>
 
-    <section id="about" style="padding-top:70px">
-      <h2>Made to be changed.</h2>
-      <p class="intro">
-        Plain HTML, CSS, and JavaScript.
-        No frameworks. No dependencies.
-        Just a starting point for whatever comes next.
-      </p>
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2>Built through curiosity.<br>Improved through practice.</h2>
+          <p>
+            A growing collection of independent projects, experiments,
+            and foundations. Each one is part of the learning process.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="card">
+            <div class="card-top">
+              <div class="card-symbol" aria-hidden="true">✳</div>
+              <span class="status">Published template</span>
+            </div>
+            <h3>Website Template</h3>
+            <p>
+              A starting point for creating and publishing a website.
+              This project is part of my hands-on learning with web
+              development, Git, and deployment workflows.
+            </p>
+            <div class="card-links">
+              <a class="text-link" href="https://github.com/VeraLynnDeGraw/Website-Template" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+              <a class="text-link" href="https://wesite-template.web.app" target="_blank" rel="noopener noreferrer">Visit live site ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div class="card-symbol" aria-hidden="true">⌘</div>
+              <span class="status">In development</span>
+            </div>
+            <h3>Website Portfolio</h3>
+            <p>
+              My evolving home on the web: a place to document
+              independent work, share experiments, and make my
+              development journey visible.
+            </p>
+            <div class="card-links">
+              <a class="text-link" href="https://github.com/VeraLynnDeGraw/Website-Portfolio" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="muted" style="margin-top:24px;font-size:.9rem">
+          More projects will appear here as they become ready to share.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">About the builder</p>
+          <h2>Curiosity into<br>something useful.</h2>
+
+          <p>
+            I'm Vera Lynn DeGraw, an independent builder exploring
+            the intersection of software development, artificial
+            intelligence, and human creativity.
+          </p>
+
+          <p>
+            I'm fascinated by complex systems, creative coding,
+            and the ways people and AI can collaborate to turn
+            ideas into useful tools. I learn by building,
+            experimenting, documenting, and improving real projects.
+          </p>
+
+          <p>
+            I'm also interested in the principles behind good
+            technology: preserving context, designing responsibly,
+            making systems understandable, and supporting open
+            collaboration.
+          </p>
+
+          <p>
+            This portfolio is a living record of my work,
+            my experiments, and what I'm learning along the way.
+          </p>
+
+          <p>
+            <strong style="color:var(--accent-light)">
+              I'm interested in technology not only for what it can
+              do, but for how thoughtfully we choose to build it.
+            </strong>
+          </p>
+        </div>
+
+        <div>
+          <p class="eyebrow">Principles behind the work</p>
+          <ul class="principles">
+            <li>
+              <strong>Understand before changing</strong>
+              <span>Learn how a system works before trying to improve it.</span>
+            </li>
+            <li>
+              <strong>Preserve context and intent</strong>
+              <span>Understand why something exists, not just how it works.</span>
+            </li>
+            <li>
+              <strong>Build responsibly</strong>
+              <span>Value transparency, human judgment, and thoughtful design.</span>
+            </li>
+            <li>
+              <strong>Learn in the open</strong>
+              <span>Document progress, share useful work, and improve through iteration.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interests">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">What keeps me curious</p>
+          <h2>Questions worth exploring.</h2>
+          <p>
+            These are areas I'm interested in learning about through
+            research, experimentation, and building real things.
+          </p>
+        </div>
+
+        <div class="interest-grid">
+          <article class="card interest-card">
+            <div class="card-symbol" aria-hidden="true">◎</div>
+            <h3>AI & Human Collaboration</h3>
+            <p>
+              Exploring how AI can support human understanding,
+              creativity, and problem-solving while keeping human
+              judgment and intent central.
+            </p>
+          </article>
+
+          <article class="card interest-card">
+            <div class="card-symbol" aria-hidden="true">⌘</div>
+            <h3>Open-Source Development</h3>
+            <p>
+              Learning how transparent code, clear documentation,
+              and maintainable foundations help projects become
+              easier to inspect, share, and improve.
+            </p>
+          </article>
+
+          <article class="card interest-card">
+            <div class="card-symbol" aria-hidden="true">✳</div>
+            <h3>Creative Coding</h3>
+            <p>
+              Turning abstract ideas into interactive experiences
+              through experimentation, visual design, and
+              hands-on development.
+            </p>
+          </article>
+
+          <article class="card interest-card">
+            <div class="card-symbol" aria-hidden="true">◇</div>
+            <h3>Responsible Systems</h3>
+            <p>
+              Exploring how context, transparency, stewardship,
+              and thoughtful system design can make technology
+              more understandable and useful.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="toolkit">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Tools & practice</p>
+          <h2>Learning by doing.</h2>
+          <p>
+            Technologies and practices I've been working with in
+            my projects. This list reflects my current practice,
+            not a claim of mastery.
+          </p>
+        </div>
+
+        <div class="toolkit" aria-label="Tools and practices">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Firebase Hosting</span>
+          <span class="tag">Command Line</span>
+          <span class="tag">Responsive Design</span>
+          <span class="tag">Technical Documentation</span>
+          <span class="tag">Iterative Development</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <p class="eyebrow">Keep in touch</p>
+          <h2>Good ideas grow when they're shared.</h2>
+          <p>
+            I'm building, learning, and exploring one project at a time.
+            Visit my GitHub to follow my work, inspect the code, and see
+            what I'm working on next.
+          </p>
+          <a class="button button-primary" href="https://github.com/VeraLynnDeGraw" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      Built with curiosity · Customize freely
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Vera Lynn DeGraw</span>
+      <span>Made with curiosity and care.</span>
     </div>
   </footer>
 
   <script>
-    const button = document.querySelector("#lightButton");
-    const orb = document.querySelector("#orb");
-    const message = document.querySelector("#message");
-
-    let isLit = false;
-
-    button.addEventListener("click", () => {
-      isLit = !isLit;
-
-      orb.classList.toggle("lit", isLit);
-      button.setAttribute("aria-pressed", String(isLit));
-
-      button.textContent = isLit
-        ? "Turn off the light"
-        : "Turn on the light";
-
-      message.textContent = isLit
-        ? "There you are. A little light, right where you need it."
-        : "The light is resting. Press the button when you're ready.";
-    });
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
