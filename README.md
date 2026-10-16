@@ -75,17 +75,13 @@ Stop the server with `Ctrl+C`.
 
 The root `index.html` is the main source page. The `public/` directory contains the files configured for Firebase Hosting.
 
-## Deploy to Firebase Hosting
+## Deployment
 
-This project uses the Firebase project `veralynndegrawportfolio`.
+The portfolio is hosted on Firebase Hosting. Deployment is maintained by the repository owner.
 
-Install and authenticate the [Firebase CLI](https://firebase.google.com/docs/cli), then run the deployment command from the repository directory:
+This public repository provides the source code and instructions for running the site locally. Deployment credentials and private access are not included in this documentation.
 
-```bash
-firebase deploy --only hosting --project veralynndegrawportfolio
-```
-
-The `firebase.json` configuration publishes the `public/` directory. Keep the project ID explicit when deploying so the portfolio is not accidentally published to the original template's Firebase project.
+**Live website:** https://veralynndegrawportfolio.web.app/
 
 ## Project History
 
